@@ -66,9 +66,8 @@ service = server.listen(port, function (request, response) {
             }
         })
         
-
-        /* Now we finally execute our scraper */
-        var pjs = require(fs.workingDirectory + '/pjscrape/pjsmodulep.js').pjs();
+        
+        /* validate module */
         var module = module_obj.callback;
 
         if( ! (module != null && typeof module === 'object')) {
@@ -92,6 +91,8 @@ service = server.listen(port, function (request, response) {
         var temp_filename = fs.workingDirectory + '/tmp/out-' + system.pid + '-' + String(Date.now() /1000 |0) +'.json';
         fs.touch(temp_filename);
 
+        /* Now we finally execute our scraper */
+        var pjs = require(fs.workingDirectory + '/pjscrape/pjsmodulep.js').pjs();
         pjs.config({
             log: 'none',
             timeoutInterval: 10,
