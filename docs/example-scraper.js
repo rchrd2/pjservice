@@ -1,5 +1,7 @@
 define({
-    url: 'http://jasonmoran.com/shows.html', scraper: function () {
+    url: 'http://jasonmoran.com/shows.html',
+    scraper: function () {
+        $ = jQuery;
         $('tr:nth-child(1) td').remove();
         var data = [];
         $('tr').each(function(index, elem) {
