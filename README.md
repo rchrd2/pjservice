@@ -1,4 +1,4 @@
-Pjservice turns pjscrape into a service component.
+A simple web service for running scrapers.
 
 It uses `polipo` for caching. On a mac install with `brew install polipo`.
 
@@ -68,3 +68,11 @@ define({
 });
 
 ```
+
+# Client Scripts
+
+See ./client/*
+
+To build, run `bash build_client.sh`
+
+Helper functions are in `H.js`.
