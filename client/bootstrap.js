@@ -11006,6 +11006,11 @@ if ( !noGlobal ) {
 
 return jQuery;
 }));
+/**
+ * Injected into client.
+ * Helper functions.
+ */
+
 var H = {
   /**
    * @param Elemnent (not a jquery element)
@@ -11023,5 +11028,18 @@ var H = {
       sel.removeAllRanges();
     }
     return innerText;
-  }
+  },
+
+  qualifyURL: function(url) {
+    var a = document.createElement('a'); a.href = url; return a.href;
+  },
+
+  getURLSync: function(url) {
+    return $.ajax({ type: "GET", url: url, cache: true, async: false }).responseText;
+  },
+
+  extractUrlValue: function(key, url) {
+    var match = url.match('[?&]' + key + '=([^&]+)');
+    return match ? match[1] : null;
+  },
 };

@@ -42,7 +42,7 @@ var service = server.listen(port, function (request, response) {
     throw "No post module";
 
   /* parse out define information using a closure */
-  module_obj = function(define) {
+  var module_obj = function(define) {
     return eval(request.post.module);
   }(function (name, deps, callback) {
     /* Adjust args appropriately */
@@ -78,6 +78,7 @@ var service = server.listen(port, function (request, response) {
     var page = webpage.create();
     page.open(module.url, function(status) {
       page.injectJs('./client/bootstrap.js');
+      page.evaluateJavaScript('window.$ = window.jQuery;');
       var result_data = page.evaluate(module.scraper);
       var json_data = JSON.stringify(result_data, null, 2);
       return_request(json_data, 200);
